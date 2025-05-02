@@ -1,3 +1,63 @@
+"""
+Output:
+Best KNN Params: {'n_neighbors': 11}
+KNN Model Results:
+Accuracy: 0.6026200873362445
+Classification Report:
+              precision    recall  f1-score   support
+
+           4       0.00      0.00      0.00         6
+           5       0.66      0.78      0.72        96
+           6       0.58      0.57      0.57        99
+           7       0.35      0.27      0.30        26
+           8       0.00      0.00      0.00         2
+
+    accuracy                           0.60       229
+   macro avg       0.32      0.32      0.32       229
+weighted avg       0.57      0.60      0.58       229
+
+Best SVM Params: {'C': 1, 'kernel': 'rbf'}
+SVM Model Results:
+Accuracy: 0.6593886462882096
+Classification Report:
+              precision    recall  f1-score   support
+
+           4       0.00      0.00      0.00         6
+           5       0.70      0.75      0.72        96
+           6       0.62      0.70      0.65        99
+           7       0.71      0.38      0.50        26
+           8       0.00      0.00      0.00         2
+
+    accuracy                           0.66       229
+   macro avg       0.41      0.37      0.38       229
+weighted avg       0.64      0.66      0.64       229
+
+Best Logistic Regression Params: {'C': 0.1}
+Logistic Regression Model Results:
+Accuracy: 0.6375545851528385
+Classification Report:
+              precision    recall  f1-score   support
+
+           4       0.00      0.00      0.00         6
+           5       0.68      0.73      0.70        96
+           6       0.63      0.64      0.63        99
+           7       0.52      0.50      0.51        26
+           8       0.00      0.00      0.00         2
+
+    accuracy                           0.64       229
+   macro avg       0.37      0.37      0.37       229
+weighted avg       0.62      0.64      0.63       229
+
+Approach:
+1. Load the dataset from a CSV file.
+2. Inspect the data by displaying the first and last few rows, summary statistics, and checking for missing values.
+3. Visualize the distribution of each feature using histograms and a correlation heatmap.
+4. Preprocess the data by separating features and target variable, standardizing the features, and splitting the data into training and testing sets.
+5. Define functions to train and evaluate KNN, SVM, and Logistic Regression classifiers.
+6. Implement hyperparameter tuning using GridSearchCV for KNN, SVM, and Logistic Regression.
+7. Train and evaluate the models with the best hyperparameters.
+"""
+
 import pandas as pd
 import numpy as np
 import os
@@ -60,7 +120,6 @@ X_train, X_test, y_train, y_test = preprocess_data(data)
 
 # Improved confusion matrix visualization
 def plot_confusion_matrix(cm, model_name):
-    """Plot a confusion matrix using seaborn heatmap."""
     plt.figure(figsize=(8, 6))
     sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", cbar=False, 
                 xticklabels=np.unique(y_train), yticklabels=np.unique(y_train))
@@ -71,7 +130,6 @@ def plot_confusion_matrix(cm, model_name):
 
 # Model Training and Evaluation
 def train_knn(X_train, X_test, y_train, y_test, n_neighbors=5):
-    """Train and evaluate KNN classifier."""
     knn = KNeighborsClassifier(n_neighbors=n_neighbors)
     knn.fit(X_train, y_train)
     y_pred = knn.predict(X_test)
@@ -84,7 +142,6 @@ def train_knn(X_train, X_test, y_train, y_test, n_neighbors=5):
     plot_confusion_matrix(cm, "KNN")
 
 def train_svm(X_train, X_test, y_train, y_test, kernel='linear'):
-    """Train and evaluate Support Vector Machine classifier."""
     svm = SVC(kernel=kernel)
     svm.fit(X_train, y_train)
     y_pred = svm.predict(X_test)
@@ -97,7 +154,6 @@ def train_svm(X_train, X_test, y_train, y_test, kernel='linear'):
     plot_confusion_matrix(cm, "SVM")
 
 def train_logistic_regression(X_train, X_test, y_train, y_test):
-    """Train and evaluate Logistic Regression classifier."""
     log_reg = LogisticRegression(max_iter=200)
     log_reg.fit(X_train, y_train)
     y_pred = log_reg.predict(X_test)
