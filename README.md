@@ -29,7 +29,7 @@ Here's an in-depth look at each file within the repository:
     * **Visualization:** Generates visualizations to illustrate the resulting clusters.
     * **Key Libraries:** Leverages the power of `pandas`, `numpy`, `seaborn`, `matplotlib`, and `sklearn`.
 
-* **`DBSCAN.py`**
+* *`DBSCAN.py`*
 
     * **Algorithm:** Focuses on the implementation of the DBSCAN clustering algorithm.
     * **Workflow:** Conducts Exploratory Data Analysis (EDA), performs data preprocessing, and visualizes the data.
