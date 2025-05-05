@@ -29,7 +29,7 @@ Unsupervised learning models deal with unlabeled data. This section covers:
 
 ## 🧰 Tools and Libraries
 
-- Python 3.x
+- Python 3.10.6
 - scikit-learn
 - pandas
 - numpy
